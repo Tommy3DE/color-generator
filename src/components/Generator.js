@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import SingleColor from "./SingleColor";
-
+import { randomHexColor } from "random-hex-color-generator";
 import Values from "values.js";
-
+import ReturnBtn from "./ReturnBtn";
 const Generator = () => {
   const [color, setColor] = useState("");
   const [error, setError] = useState(false);
   const [list, setList] = useState(new Values('#87a6d8').all(10));
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,8 +20,16 @@ const Generator = () => {
       console.log(error);
     }
   };
+
+  const randomHandler =()=>{
+    let randomColor = randomHexColor()
+    console.log(randomColor)
+    setColor(randomColor)
+  };
+
   return (
     <>
+    <ReturnBtn/>
       <section className="container">
         <h3>Color Generator</h3>
         <form onSubmit={handleSubmit}>
@@ -35,6 +44,9 @@ const Generator = () => {
           <button className="btn" type="submit">
             submit
           </button>
+          <button className="btn" onClick={randomHandler}>
+            Random
+        </button>
         </form>
       </section>
       <section className='colors'>
